@@ -51,13 +51,30 @@
 # camel case : numberOne
 # big camel case NumberOne
 
-number_one = 1
+# number_one = 1
 
-string = 'nikan'
-print(string[0])
-print(string[1])
-print(string[2])
-print(string[3])
-print(string[4])
+# string = 'nikan'
+# print(string[0])
+# print(string[1])
+# print(string[2])
+# print(string[3])
+# print(string[4])
+# # slicing
+# print(string[1:3])
 
-print(string[1:3])
+# exercise : write any chars of your name
+
+
+# name = 'ramehr'
+# print(name[0])
+# print(name[1])
+# print(name[2])
+# print(name[3])
+# print(name[4])
+# print(name[5])
+# print(name[6]) # IndexError: string index out of range
+
+# print(input('enter your name: '))
+# name = input('enter your name: ')
+
+# print(name)
