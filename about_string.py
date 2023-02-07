@@ -8,3 +8,6 @@
 
 shopping_list = 'item1,item2,item3'
 print(shopping_list[0])
+
+# we must use list datatype
+
