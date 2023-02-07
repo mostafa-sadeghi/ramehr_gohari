@@ -31,10 +31,27 @@
 # message = "He said, \"Aren't can't shouldn't wouldn't.\""
 
 
-name = input('enter your name: ')
-family = input('enter your family: ')
-age = input('enter your age: ')
+# name = input('enter your name: ')
+# family = input('enter your family: ')
+# age = input('enter your age: ')
 
 
-message = name + " " + family + " " + age + " years old."
-print(message)
+# message = name + " " + family + " " + age + " years old."
+# print(message)
+
+
+# exercise : get three numbers from input and print sum of them like this 1 + 2 = 3
+
+# number1 = float(input('Enter first number: '))
+# number2 = float(input('Enter second number: '))
+# number3 = float(input('Enter third number: '))
+# result = number1 + number2 + number3
+# message = str(number1) + " + " + str(number2) + \
+#     " + " + str(number3) + " = " + str(result)
+# print(message)
+
+# message = "%s + %s + %s = %s" % (number1, number2, number3, result)
+# print(message)
+
+# message = f"{number1} + {number2} + {number3} = {result}"
+# print(message)
