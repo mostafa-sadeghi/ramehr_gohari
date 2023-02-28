@@ -52,5 +52,5 @@
 # average = (score1 + score2 + score3) / 3
 # print(f"{name}'s average is:{average}")
 
-import math
-print(math.sqrt(4))
+# import math
+# print(math.sqrt(4))
