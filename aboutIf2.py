@@ -76,3 +76,14 @@
 # > 80   => B
 # > 70   => C
 # > 60   => D
+
+
+
+# if first condition:
+#     print("")
+# elif second condition:
+#     do some thing 
+# else:
+#     do some thing else
+
+
