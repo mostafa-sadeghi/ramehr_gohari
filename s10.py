@@ -30,7 +30,9 @@
 # numbers = [1,2,3,4,5]
 # print(len(numbers))
 
-matrix = [[1, 2, 3], [4, 5, 6]]
+matrix = [[1, 2, 3],
+          [4, 5, 6]]
+
 # print(matrix[0][0],end=' ')
 # print(matrix[0][1],end=' ')
 # print(matrix[0][2])
@@ -38,11 +40,11 @@ matrix = [[1, 2, 3], [4, 5, 6]]
 # print(matrix[1][1],end=' ')
 # print(matrix[1][2])
 
-print("rows: ", len(matrix))
-print("columns: ", len(matrix[0]))
+# print("rows: ", len(matrix))
+# print("columns: ", len(matrix[0]))
 
-for i in range(len(matrix)):
-    # print(matrix[i])
-    for j in range(len(matrix[0])):
-        print(matrix[i][j], end=' ')
-    print()
+# for i in range(len(matrix)):
+#     # print(matrix[i])
+#     for j in range(len(matrix[0])):
+#         print(matrix[i][j], end=' ')
+#     print()
