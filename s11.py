@@ -65,10 +65,10 @@
 
 # while loop
 
-for i in range(10):
-    print(i)
+# for i in range(10):
+#     print(i)
 
-i = 0
-while i < 10:
-    print(i)
-    i = i + 1  # i += 1
+# i = 0
+# while i < 10:
+#     print(i)
+#     i = i + 1  # i += 1
