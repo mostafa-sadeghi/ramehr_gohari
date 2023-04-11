@@ -79,3 +79,5 @@ for i in range(6):
 
 
 s.exitonclick()
+# exercise : rotated squares
+# exercise : draw star
