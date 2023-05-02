@@ -1,74 +1,78 @@
-# for i in range(3):
-#     print("a")
-#     for j in range(3):
-#         print("b")
+# message = "you and me and sara are friends."
+# print(message.find("and"))
+# print(message.count("and"))
+# print(message.split().count("and"))
 
 
-# total = 0
-# for i in range(3):
-#     new_number = int(input('enter a number:> '))
-#     total += new_number
+# string = ''
+# all_words = []
+# index = 0
+# for char in message:
+#     index += 1
+#     string += char
+#     if char == ' ' or index == len(message):
+#         all_words.append(string[:-1])
+#         string = ''
 
-# print("the total is:", total)
-
-
-# total = 0
-# for i in range(1,101):
-#     total += i
-# print(total)
-
-
-# total = 0
-# for i in range(5):
-#     new_number = int(input('Enter a number:> '))
-#     if new_number == 0:
-#         total += 1
-# print("you entered a total of", total, "zeros")
-
-# numbers = [1, 2, 3, 4, 5, 2, 3, 0]
-# number_to_find = 2
+# print(all_words)
 
 # counter = 0
-# for n in numbers:
-#     if n == number_to_find:
+# for word in all_words:
+#     if word == 'and':
 #         counter += 1
-# print(f'{number_to_find} repeated {counter} time/s.')
 
-# print(f'{number_to_find} repeated {numbers.count(number_to_find)} time/s.')
-
-# تمرین اول
-'''
-برنامه ای بنویسی که 5 عدد از ورودی دریافت نماید
-و مجموع اعداد فرد وارد شده و نیز مجموع اعداد زوج وارد شده را نمایش دهد
-همچنین اعداد را از انتها به ابتدا نمایش دهد
-
-'''
-
-# a = 0
-# for i in range(10):
-#     a = a + 1
-# print(a)
-
-# for j in range(10):
-#     a = a + 1
-# print(a)
+# print(f'"and" repeated "{counter}" times in "{message}"')
 
 
-# a = 0
-# for i in range(10):
-#     a = a + 1
-#     for j in range(10):
-#         a = a + 1
-
-# print(a)
+import random
 
 
-# while loop
+# print(random.random()) # [0,1)
+# print(random.randint(100,999))
+# print(random.randrange(100,1000,50))
+# print(random.choice(["red","green","blue"]))
+# print(random.choice([1,2,3,45]))
+# print(random.choice('abc'))
+# print(random.choices([1,2,3,4,5,6,7,8,9],k=3))
 
-# for i in range(10):
-#     print(i)
 
-# i = 0
-# while i < 10:
-#     print(i)
-#     i = i + 1  # i += 1
+def find_digits(number):
+    digits = {}
+    i = 1
+    while number != 0:
+        digits[i] = number % 10
+        number = number // 10
+        i += 1
+    for number in digits.values():
+        if number in 
+   
+    return digits
+
+number = random.randrange(100,1000)
+print(find_digits(number))
+
+
+
+
+
+
+
+
+
+
+
+# import random
+
+# NUMBER_DIGITS = 3
+# MAXIMUM_TIMES = 10
+# print(f'''
+# I am thinking of a {NUMBER_DIGITS}-digit number. Try to guess what it is.
+# The clues I give are...
+# When I say:    That means:
+#   Bagels       None of the digits is correct.
+#   Pico         One digit is correct but in the wrong position.
+#   Fermi        One digit is correct and in the right position.
+# I have thought up a number. You have {MAXIMUM_TIMES} guesses to get it.
+# ''')
+
+# secret_number = generate_secret_number()
