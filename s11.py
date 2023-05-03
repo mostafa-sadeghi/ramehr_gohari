@@ -38,15 +38,20 @@ import random
 
 def find_digits(number):
     digits = {}
+    is_unique = True
     i = 1
     while number != 0:
-        digits[i] = number % 10
+        digits[f'{i}'] = number % 10
         number = number // 10
         i += 1
-    for number in digits.values():
-        if number in 
+    for i in range(len(digits.values())):
+            if list(digits.values())[i] in list(digits.values())[i+1:]:
+                 is_unique = False
+    if is_unique == False:
+        return find_digits(random.randrange(100,1000))
+                 
    
-    return digits
+    return digits.values()
 
 number = random.randrange(100,1000)
 print(find_digits(number))
