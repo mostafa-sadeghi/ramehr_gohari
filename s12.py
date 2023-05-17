@@ -13,6 +13,13 @@ def generate_secret_number():
     return secret_number
 
 
+def check_state(user_guess, sec_number):
+    print("user_guess", user_guess)
+    print("sec_number", sec_number)
+    # todo 
+    
+
+
 print(f'''I am thinking of a {NUM_DIGITS}-digit number. Try to guess what it is.
 The clues I give are...
 When I say:    That means:
@@ -25,20 +32,8 @@ I have thought up a number. You have {MAX_GUESSES} guesses to get it.
 while True:
     secret_number = generate_secret_number()
     print('Secret number is generated...')
-    numGuesses = 1
-    # گرفتن حدس کاربر
-    # بررسی وضعیت حدس کاربر(تابع)
-        # یک تابع بنویس
-        # این تابع مسئول بررسی حدس کاربر می باشد
-        # اگر حدس کاربر درست بود : return 'you won'
-        # اگر تمام ارقام غلط بودند return 'bagels'
-        # اگر بعضی ارقام درست بودند بازیکن را راهنمایی نماید
-            # با کمک حلقه فور تک تک ارقام عدد حدس زده شده را با عدد اصلی مقایسه نماید
-            # یک لیست بساز
-            # در صورتی که هر یک از ارقام درست بودند و سر جای خود بودند برای هریک عبارت زیر را در لیست اضافه کن
-            # fermi
-            # اگر هر یک از ارقام درست بودند اما در جای اشتباه بودند، 
-            # pico را اضافه کن
-        # در انتهای هر دست از بازیکن سوال شود که آیا می خواهی ادامه بدهی؟
-        # در صورت مثبت ودن پاسخ، بازی ادامه یابد
-        # در غیر اینصورت بازی تمام شود.
+
+    for i in range(10):
+        print(f'you have {MAX_GUESSES-i} times to guess it!')
+        guess = input('Enter three digits number: ')
+        state = check_state(guess, secret_number)
