@@ -71,7 +71,7 @@ food.goto(food_initial_x, food_initial_y)
 snake_body = []
 while True:
     window.update()
-    move_snake()
+
     if head.distance(food) < 15:
         x = random.randint(-300, 300)
         y = random.randint(-300, 300)
@@ -91,5 +91,5 @@ while True:
         x = head.xcor()
         y = head.ycor()
         snake_body[0].goto(x, y)
-
+    move_snake()
     time.sleep(0.1)
