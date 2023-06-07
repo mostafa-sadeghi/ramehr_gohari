@@ -38,6 +38,33 @@ def move_snake():
         head.setx(xposition - 20)
 
 
+def reset():
+    global score
+    score = 0
+    score_pen.clear()
+    score_pen.write(f"Score: {score}", align="center", font=("Arial", 30))
+    head.goto(0, 0)
+    head.dir = ""
+    for body in snake_body:
+        body.ht()
+    snake_body.clear()
+
+
+def change_food_position():
+    food_initial_x = random.randint(-250, 250)
+    food_initial_y = random.randint(-250, 250)
+    food.goto(food_initial_x, food_initial_y)
+
+
+def generate_turtle_object(shape, color):
+    turtle_object = turtle.Turtle()
+    turtle_object.shape(shape)
+    turtle_object.color(color)
+    turtle_object.speed("fastest")
+    turtle_object.penup()
+    return turtle_object
+
+
 window = turtle.Screen()
 window.title("Snake game")
 window.bgcolor('blue')
@@ -50,32 +77,31 @@ window.onkey(go_right, "Right")
 window.onkey(go_left, "Left")
 
 
-head = turtle.Turtle()
-head.shape("square")
-head.penup()
-head.speed("fastest")
-# head.goto(0,100)
+score = 0
+
+head = generate_turtle_object("square", "black")
 head.dir = "none"
 
 
-food = turtle.Turtle()
-food.shape("circle")
-food.color("red")
-food.speed("fastest")
-food.penup()
+food = generate_turtle_object("circle", "red")
 food.shapesize(0.5, 0.5)
-food_initial_x = random.randint(-300, 300)
-food_initial_y = random.randint(-300, 300)
-food.goto(food_initial_x, food_initial_y)
+change_food_position()
+
+score_pen = generate_turtle_object("square", "white")
+score_pen.hideturtle()
+score_pen.goto(0, 260)
+score_pen.write(f"Score: {score}", align="center", font=("Arial", 30))
+
 
 snake_body = []
 while True:
     window.update()
 
     if head.distance(food) < 15:
-        x = random.randint(-300, 300)
-        y = random.randint(-300, 300)
-        food.goto(x, y)
+        score += 1
+        score_pen.clear()
+        score_pen.write(f"Score: {score}", align="center", font=("Arial", 30))
+        change_food_position()
         new_body = turtle.Turtle()
         new_body.speed("fastest")
         new_body.shape("square")
@@ -91,5 +117,15 @@ while True:
         x = head.xcor()
         y = head.ycor()
         snake_body[0].goto(x, y)
+
+    if head.xcor() > 290 or head.xcor() < -290 \
+            or head.ycor() > 290 or head.ycor() < -290:
+        reset()
+
     move_snake()
-    time.sleep(0.1)
+
+    for body in snake_body:
+        if head.distance(body) < 20:
+            reset()
+
+    time.sleep(0.15)
