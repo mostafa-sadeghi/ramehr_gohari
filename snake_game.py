@@ -36,9 +36,18 @@ def full_screen():
     # window.screensize(canvwidth=1520, canvheight=800)
 
 
+def on_close():
+    global running
+    running = False
+
+
 window_width = 600
 window_height = 600
 window = make_screen()
+
+root = window._root
+root.resizable(False, False)
+root.protocol("WM_DELETE_WINDOW", on_close)
 # window.screensize(canvwidth=window_width, canvheight=window_height)
 window.setup(width=window_width, height=window_height)
 window.listen()
@@ -50,6 +59,15 @@ window.onkey(full_screen, "f")
 
 
 score = 0
+try:
+    file = open('snake_game.csv')
+    high_score = file.read()
+    print(high_score)
+
+except FileExistsError:
+    print("error")
+    high_score = 0
+
 
 head = generate_turtle_object("square", "black")
 head.dir = "none"
@@ -62,7 +80,8 @@ change_food_position(food, window_width, window_height)
 score_pen = generate_turtle_object("square", "white")
 score_pen.hideturtle()
 score_pen.goto(0, 260)
-score_pen.write(f"Score: {score}", align="center", font=("Arial", 30))
+score_pen.write(f"Score: {score} HighScore: {high_score}",
+                align="center", font=("Arial", 30))
 
 border_pen = generate_turtle_object("square", "black")
 border_pen.hideturtle()
@@ -75,7 +94,8 @@ for i in range(2):
     border_pen.right(90)
 
 snake_body = []
-while True:
+running = True
+while running:
     window.update()
 
     # print(window_width)
@@ -83,7 +103,8 @@ while True:
     if head.distance(food) < 15:
         score += 1
         score_pen.clear()
-        score_pen.write(f"Score: {score}", align="center", font=("Arial", 30))
+        score_pen.write(
+            f"Score: {score} HighScore: {high_score}", align="center", font=("Arial", 30))
         change_food_position(food, window_width, window_height)
         new_body = generate_turtle_object("square", "grey")
         snake_body.append(new_body)
@@ -99,13 +120,13 @@ while True:
 
     if (head.xcor() > (window_width/2 - 10)) or (head.xcor() < -(window_width/2-10)) \
             or (head.ycor() > (window_width/2 - 65)) or (head.ycor() < -(window_width/2-10)):
-        score = reset(score_pen, head, snake_body, score)
+        score, high_score = reset(score_pen, head, snake_body, score,high_score)
         print("snake_game_score:", score)
 
     move_snake(head)
 
     for body in snake_body:
         if head.distance(body) < 20:
-            score = reset(score_pen, head, snake_body, score)
+            score, high_score = reset(score_pen, head, snake_body, score,high_score)
 
     time.sleep(0.2)

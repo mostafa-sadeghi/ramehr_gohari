@@ -26,22 +26,23 @@ def move_snake(head):
         head.setx(xposition - 20)
 
 
-def reset(score_pen, head, snake_body, high_score):
+def reset(score_pen, head, snake_body,score, high_score):
 
     file = open("snake_game.csv", "w")
     file.write(f"{high_score}")
-   
+
     score = 0
     print("snake_game_utils_score:", score)
 
     score_pen.clear()
-    score_pen.write(f"Score: {score}", align="center", font=("Arial", 30))
+    score_pen.write(f"Score: {score} HighScore: {high_score}",
+                    align="center", font=("Arial", 30))
     head.goto(0, 0)
     head.dir = ""
     for body in snake_body:
         body.ht()
     snake_body.clear()
-    return score
+    return score, high_score
 
 
 def change_food_position(food, window_width, window_height):
