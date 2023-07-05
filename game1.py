@@ -10,28 +10,39 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
+DARKGREEN = (10, 50, 10)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 display_surface.fill(BLACK)
 
-# pygame.draw.line(display_surface, RED, (0, 0), (100, 100), 5)
-# pygame.draw.line(display_surface, GREEN, (100, 100), (200, 300), 1)
 
-
-# pygame.draw.circle(display_surface, BLACK,
-#                    (WINDOWS_WIDTH/2, WINDOW_HEIGHT/2), 200, 6)
-# pygame.draw.circle(display_surface, YELLOW,
-#                    (WINDOWS_WIDTH/2, WINDOW_HEIGHT/2), 195, 0)
-
-# pygame.draw.rect(display_surface, RED, (500, 0, 100, 100))
-# pygame.draw.rect(display_surface, MAGENTA, (500, 100, 50, 100))
-
-dragon_left_image = pygame.image.load("dragon_l.png")
+dragon_left_image = pygame.image.load("dragon_left.png")
 dragon_left_rect = dragon_left_image.get_rect()
 dragon_left_rect.topleft = (0, 0)
 
+
+dragon_right_image = pygame.image.load("dragon_right.png")
+dragon_right_rect = dragon_right_image.get_rect()
+dragon_right_rect.topright = (WINDOWS_WIDTH, 0)
+
+font1 = pygame.font.SysFont('Terminal', 62)
+text1 = font1.render("Dragon Game!", False, GREEN, DARKGREEN)
+text1_rect = text1.get_rect()
+text1_rect.center = (WINDOWS_WIDTH/2, WINDOW_HEIGHT/2)
+
+font2 = pygame.font.Font('Algerian Regular.ttf', 64)
+text2 = font2.render("Dragon!", False, GREEN)
+text2_rect = text2.get_rect()
+text2_rect.center = (WINDOWS_WIDTH/2, WINDOW_HEIGHT/2 + 100)
+
+sound1 = pygame.mixer.Sound('sound.wav')
+sound1.play()
+
+
+pygame.mixer.music.load("bgsound.mp3")
+pygame.mixer.music.play(-1, 0.0)
 
 # The main loop
 running = True
@@ -41,6 +52,11 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     display_surface.blit(dragon_left_image, dragon_left_rect)
+    display_surface.blit(dragon_right_image, dragon_right_rect)
+    display_surface.blit(text1, text1_rect)
+    display_surface.blit(text2, text2_rect)
+
+    pygame.draw.line(display_surface, WHITE, (0, 75), (WINDOWS_WIDTH, 75), 6)
 
     pygame.display.update()
 # End the game
