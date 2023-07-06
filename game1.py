@@ -17,6 +17,10 @@ CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 display_surface.fill(BLACK)
 
+VELOCITY = 5
+FPS = 60
+clock = pygame.time.Clock()
+
 
 dragon_left_image = pygame.image.load("dragon_left.png")
 dragon_left_rect = dragon_left_image.get_rect()
@@ -41,6 +45,11 @@ sound1 = pygame.mixer.Sound('sound.wav')
 sound1.play()
 
 
+player_image = pygame.image.load("dragon_right.png")
+player_rect = player_image.get_rect()
+player_rect.x = 0
+player_rect.bottom = WINDOW_HEIGHT
+
 pygame.mixer.music.load("bgsound.mp3")
 pygame.mixer.music.play(-1, 0.0)
 
@@ -51,13 +60,32 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEMOTION and event.buttons[0] == 1:
+            mouse_x = event.pos[0]
+            mouse_y = event.pos[1]
+            player_rect.centerx = mouse_x
+            player_rect.centery = mouse_y
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and player_rect.left > 0:
+        player_rect.x -= VELOCITY
+    if keys[pygame.K_RIGHT] and player_rect.right < WINDOWS_WIDTH:
+        player_rect.x += VELOCITY
+    if keys[pygame.K_UP] and player_rect.top > 75:
+        player_rect.y -= VELOCITY
+    if keys[pygame.K_DOWN] and player_rect.bottom < WINDOW_HEIGHT:
+        player_rect.y += VELOCITY
+
+    display_surface.fill(BLACK)
     display_surface.blit(dragon_left_image, dragon_left_rect)
     display_surface.blit(dragon_right_image, dragon_right_rect)
-    display_surface.blit(text1, text1_rect)
-    display_surface.blit(text2, text2_rect)
+    display_surface.blit(player_image, player_rect)
+    # display_surface.blit(text1, text1_rect)
+    # display_surface.blit(text2, text2_rect)
 
     pygame.draw.line(display_surface, WHITE, (0, 75), (WINDOWS_WIDTH, 75), 6)
 
     pygame.display.update()
+    clock.tick(FPS)
 # End the game
 pygame.quit()
