@@ -1,0 +1,10 @@
+*.exe
+*.spec
+.idea
+.vscode
+build
+dist
+
+*.wav
+*.mp3
+*.mp4
