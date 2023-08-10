@@ -5,6 +5,6 @@
 build
 dist
 
-*.wav
+# *.wav
 *.mp3
 *.mp4
