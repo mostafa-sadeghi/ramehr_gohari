@@ -15,14 +15,17 @@ player = Player()
 player_group = pygame.sprite.Group()
 player_group.add(player)
 
+
+monster_group = pygame.sprite.Group()
+
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+    display_surface.fill((0, 0, 0))
     player_group.update()
     player_group.draw(display_surface)
     pygame.display.update()
-    clock.tick()
+    clock.tick(FPS)
 pygame.quit()
