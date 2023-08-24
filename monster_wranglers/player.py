@@ -26,7 +26,7 @@ class Player(Sprite):
             self.rect.x -= self.velocity
         if keys[pygame.K_RIGHT] and self.rect.right < WINDOW_WIDTH:
             self.rect.x += self.velocity
-        if keys[pygame.K_DOWN] and self.rect.bottom < WINDOW_HEIGHT:
+        if keys[pygame.K_DOWN] and self.rect.bottom < WINDOW_HEIGHT - 100:
             self.rect.y += self.velocity
         if keys[pygame.K_UP] and self.rect.top > 100:
             self.rect.y -= self.velocity
@@ -36,4 +36,6 @@ class Player(Sprite):
         self.rect.centerx = WINDOW_WIDTH/2
 
     def warp(self):
-        pass
+        if self.warps > 0:
+            self.warps -= 1
+            self.rect.bottom = WINDOW_HEIGHT
