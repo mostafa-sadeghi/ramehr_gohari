@@ -1,12 +1,14 @@
 from pygame.sprite import Sprite
 import pygame
 
+from config import WINDOW_HEIGHT
 
-class PlayerBullet(Sprite):
+
+class AlienBullet(Sprite):
     def __init__(self, x, y, bullet_group):
         super().__init__()
 
-        self.image = pygame.image.load("green_laser.png")
+        self.image = pygame.image.load("red_laser.png")
         self.rect = self.image.get_rect()
         self.rect.centerx = x
         self.rect.centery = y
@@ -14,7 +16,7 @@ class PlayerBullet(Sprite):
         bullet_group.add(self)
 
     def update(self):
-        self.rect.y -= self.velocity
+        self.rect.y += self.velocity
 
-        if self.rect.bottom < 0:
+        if self.rect.top > WINDOW_HEIGHT:
             self.kill()

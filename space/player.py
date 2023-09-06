@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 
 from config import WINDOW_WIDTH, WINDOW_HEIGHT
+from playerBullet import PlayerBullet
 
 
 class Player(Sprite):
@@ -26,7 +27,8 @@ class Player(Sprite):
             self.rect.x += self.velocity
 
     def fire(self):
-        pass
+        # TODO
+        PlayerBullet(self.rect.centerx, self.rect.top, self.bullet_group)
 
     def reset(self):
         self.rect.centerx = WINDOW_WIDTH/2

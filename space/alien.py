@@ -1,5 +1,9 @@
 from pygame.sprite import Sprite
 import pygame
+
+from alienBullet import AlienBullet
+
+
 class Alien(Sprite):
     def __init__(self, x, y, velocity, bullet_group):
         super().__init__()
@@ -18,11 +22,11 @@ class Alien(Sprite):
 
     def update(self):
         self.rect.x += self.direction * self.velocity
+        self.fire()
         # TODO
 
     def fire(self):
-        pass
-        # TODO
+        AlienBullet(self.rect.x, self.rect.y, self.bullet_group)
 
     def reset(self):
         self.rect.topleft = (self.starting_x, self.starting_y)
