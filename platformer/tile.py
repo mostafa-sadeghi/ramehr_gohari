@@ -19,3 +19,6 @@ class Tile(Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = (x,y)
 
+    def update(self, display_surface):
+        pygame.draw.rect(display_surface, (255,255,0), self.rect,2)
+

@@ -75,8 +75,9 @@ while running:
 
     screen.blit(backgroun_image, background_rect)
     main_tile_group.draw(screen)
+    main_tile_group.update(screen)
     my_player_group.draw(screen)
-    my_player_group.update()
+    my_player_group.update(screen)
 
     pygame.display.update()
     clock.tick(FPS)
