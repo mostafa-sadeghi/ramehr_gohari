@@ -8,7 +8,7 @@ from playerBullet import PlayerBullet
 class Player(Sprite):
     def __init__(self, bullet_group):
         super().__init__()
-        self.image = pygame.image.load("player_ship.png")
+        self.image = pygame.image.load("assets/player_ship.png")
         self.rect = self.image.get_rect()
         self.rect.centerx = WINDOW_WIDTH/2
         self.rect.bottom = WINDOW_HEIGHT
@@ -32,3 +32,6 @@ class Player(Sprite):
 
     def reset(self):
         self.rect.centerx = WINDOW_WIDTH/2
+
+    def draw(self, display_surface):
+        display_surface.blit(self.image, self.rect)

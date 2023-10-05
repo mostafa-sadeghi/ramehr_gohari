@@ -7,8 +7,8 @@ from alienBullet import AlienBullet
 class Alien(Sprite):
     def __init__(self, x, y, velocity, bullet_group):
         super().__init__()
-        self.image = pygame.image.load("alien.png")
-        self.rect = self.rect.get_rect()
+        self.image = pygame.image.load("assets/alien.png")
+        self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
 
         self.starting_x = x
@@ -18,7 +18,7 @@ class Alien(Sprite):
         self.velocity = velocity
         self.bullet_group = bullet_group
 
-        self.shoot_sound = pygame.mixer.Sound("alien_fire.wav")
+        self.shoot_sound = pygame.mixer.Sound("assets/alien_fire.wav")
 
     def update(self):
         self.rect.x += self.direction * self.velocity
