@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from constants import *
+from player import Player
 from world import draw_grid, World
 from levels import level0_data
 
@@ -15,6 +16,7 @@ sun_image = pygame.image.load('platformer2\img\sun.png')
 
 
 world = World(level0_data.world_data)
+player = Player(100, SCREEN_HEIGTH-130)
 
 running = True
 while running:
@@ -26,5 +28,6 @@ while running:
     screen.blit(sun_image, (100, 100))
     draw_grid(screen)
     world.draw(screen)
+    player.update(screen)
     pygame.display.update()
     clock.tick(FPS)
