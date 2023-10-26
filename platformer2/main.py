@@ -28,6 +28,6 @@ while running:
     screen.blit(sun_image, (100, 100))
     draw_grid(screen)
     world.draw(screen)
-    player.update(screen)
+    player.update(screen, world.tile_list)
     pygame.display.update()
     clock.tick(FPS)

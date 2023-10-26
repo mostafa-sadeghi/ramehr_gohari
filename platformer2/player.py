@@ -20,6 +20,8 @@ class Player:
 
         self.image = self.images_right[self.index]
         self.rect = self.image.get_rect()
+        self.width = self.image.get_width()
+        self.height = self.image.get_height()
 
         self.rect.x = x
         self.rect.y = y
@@ -27,7 +29,7 @@ class Player:
         self.vel_y = 0
         self.direction = 1
 
-    def update(self, screen):
+    def update(self, screen, tile_list):
         dx = 0
         dy = 0
         walk_cooldown = 5
@@ -65,7 +67,12 @@ class Player:
 
         dy += self.vel_y
 
-        # TODO ##########################################################################
+        for tile in tile_list:
+            if tile[1].colliderect(self.rect.x + dx, self.rect.y, self.width, self.height):
+                dx = 0
+            if tile[1].colliderect(self.rect.x, self.rect.y + dy, self.width, self.height):
+                self.vel_y = 0
+                dy = tile[1].top - self.rect.bottom
 
         self.rect.x += dx
         self.rect.y += dy
