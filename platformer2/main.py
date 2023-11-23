@@ -14,10 +14,11 @@ clock = pygame.time.Clock()
 sky_image = pygame.image.load('platformer2\img\sky.png')
 sun_image = pygame.image.load('platformer2\img\sun.png')
 
-
-world = World(level0_data.world_data)
+blob_group = pygame.sprite.Group()
+lava_group = pygame.sprite.Group()
+world = World(level0_data.world_data,blob_group,lava_group)
 player = Player(100, SCREEN_HEIGTH-130)
-
+game_status = "playing"
 running = True
 while running:
     for event in pygame.event.get():
@@ -28,6 +29,10 @@ while running:
     screen.blit(sun_image, (100, 100))
     draw_grid(screen)
     world.draw(screen)
-    player.update(screen, world.tile_list)
+    game_status =player.update(screen, world.tile_list, blob_group, lava_group,game_status)
+    blob_group.update()
+    blob_group.draw(screen)
+    lava_group.update()
+    lava_group.draw(screen)
     pygame.display.update()
     clock.tick(FPS)
