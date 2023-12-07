@@ -9,7 +9,7 @@ class Player(Sprite):
         self.reset(x,y)
         
 
-    def update(self, screen, tile_list, blob_group, lava_group, game_status):
+    def update(self, screen, tile_list, blob_group, lava_group,exit_door_group, game_status):
         if self.direction == 1:
             rect = pygame.Rect(self.rect.x + 20, self.rect.y + 5, self.image.get_width()-30,self.image.get_height()-10)
         else:
@@ -28,30 +28,35 @@ class Player(Sprite):
                 self.jumped = False
 
             if keys[K_LEFT]:
+                self.idle = False
                 dx -= 5
                 self.counter += 1
                 self.direction = -1
             if keys[K_RIGHT]:
+                self.idle = False
                 dx += 5
                 self.counter += 1
                 self.direction = 1
             if not keys[K_LEFT] and not keys[K_RIGHT]:
-                self.counter = 0
-                self.index = 0
-                # if self.direction == 1:
-                #     self.image = self.images_right[self.index]
-                # if self.direction == -1:
-                #     self.image = self.images_left[self.index]
+                self.counter += 1
+                self.idle = True
 
             if self.counter > walk_cooldown:
                 self.counter = 0
                 self.index += 1
             if self.index >= len(self.images_right):
                 self.index = 0
-            if self.direction == 1:
-                self.image = self.images_right[self.index]
-            if self.direction == -1:
-                self.image = self.images_left[self.index]
+            if self.idle:
+                if self.direction == 1:
+                    self.image = self.images_idle_right[self.index]
+                if self.direction == -1:
+                    self.image = self.images_idle_left[self.index]
+
+            else:    
+                if self.direction == 1:
+                    self.image = self.images_right[self.index]
+                if self.direction == -1:
+                    self.image = self.images_left[self.index]
 
             self.vel_y += 1
             if self.vel_y > 10:
@@ -75,6 +80,9 @@ class Player(Sprite):
                 game_status = 'game_over'
             if pygame.sprite.spritecollide(self, lava_group, False):
                 game_status = 'game_over'
+            if pygame.sprite.spritecollide(self, exit_door_group, False):
+                game_status = 'exit'
+            
             
             
             self.rect.x += dx
@@ -101,10 +109,13 @@ class Player(Sprite):
     def reset(self, x,y):
         self.images_right = []
         self.images_left = []
+        self.images_idle_right = []
+        self.images_idle_left = []
         self.index = 0
         self.counter = 0
         self.jumped = False
         self.inair = False
+        self.idle = True
         self.ghost_img = pygame.image.load("platformer2/img/ghost.png")
 
         for i in range(1, 9):
@@ -113,6 +124,13 @@ class Player(Sprite):
             image_left = pygame.transform.flip(image_right, True, False)
             self.images_right.append(image_right)
             self.images_left.append(image_left)
+
+        for i in range(1, 10):
+            image_right = pygame.image.load(f'platformer2/img/boy/Idle ({i}).png')
+            image_right = pygame.transform.scale(image_right, (TILE_SIZE*1.3, TILE_SIZE*1.1))
+            image_left = pygame.transform.flip(image_right, True, False)
+            self.images_idle_right.append(image_right)
+            self.images_idle_left.append(image_left)
 
         self.image = self.images_right[self.index]
         self.rect = self.image.get_rect()

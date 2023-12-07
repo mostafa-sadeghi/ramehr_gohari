@@ -3,6 +3,7 @@ import pygame
 from constants import *
 from enemy import Enemy
 from lava import Lava
+from exit import ExitDoor
 
 def draw_grid(screen):
     for line in range(20):
@@ -15,13 +16,14 @@ def draw_grid(screen):
 
 
 class World:
-    def __init__(self, data, blob_group, lava_group) -> None:
+    def __init__(self, data, blob_group, lava_group, exit_group) -> None:
         self.tile_list = []
 
         dirt_img = pygame.image.load("platformer2\img\dirt.png")
         grass_img = pygame.image.load("platformer2\img\grass.png")
         self.blob_group = blob_group
         self.lava_group = lava_group
+        self.exit_group = exit_group
         for row_index, row in enumerate(data):
             for tile_index, tile in enumerate(row):
                 if tile == 1:
@@ -48,6 +50,10 @@ class World:
                 if tile == 6:
                     lava = Lava(tile_index * TILE_SIZE,(row_index+1) * TILE_SIZE)
                     self.lava_group.add(lava)
+
+                if tile == 7:
+                    door = ExitDoor(tile_index * TILE_SIZE,row_index * TILE_SIZE)
+                    self.exit_group.add(door)
 
 
     def draw(self, screen):
